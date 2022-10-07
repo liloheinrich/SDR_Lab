@@ -8,7 +8,6 @@ t = linspace(0, length(y_I)/fs, length(y_I));
 f = linspace(-fs/2, fs/2, length(y_I));
 
 %% Exercise 1: Part C
-% Q: should we submit a plot of this with our report?
 
 % Take the FFT of y_I
 Y_I = fftshift(fft(y_I));
@@ -48,7 +47,6 @@ ylabel("Amplitude")
 xlim([0,t(length(t))])
 
 %% Exercise 1: Part F
-% Q: what kind of plot is she looking for in part f?
 
 % Lowpass filter the signal
 y_I_lowpass = lowpass(y_I_deriv_nonneg_norm, 10e3, fs);
@@ -56,28 +54,19 @@ y_I_lowpass = lowpass(y_I_deriv_nonneg_norm, 10e3, fs);
 % Normalize the resulting signal
 y_I_lowpass_norm = y_I_lowpass/max(y_I_lowpass);
 
-% Plot it on the same axes as part (e)
+% Plot on the same axes as part (e)
 figure(); clf; hold on;
 plot(t(2:length(t)), y_I_lowpass_norm)
 plot(t(2:length(t)), y_I_deriv_nonneg_norm)
 xlabel("Time (seconds)")
 ylabel("Amplitude")
 % xlim([0,t(length(t))])
-xlim([6.1615,6.1645])
-
-% % Plot it on the same axes as part (e) [try the other way around]
-% figure(); clf; hold on;
-% plot(t(2:length(t)), y_I_deriv_nonneg_norm)
-% plot(t(2:length(t)), y_I_lowpass_norm)
-% xlabel("Time (seconds)")
-% ylabel("Amplitude")
-% xlim([0,t(length(t))])
 
 % Zoom in to a portion of the signal which illustrates how the diode followed 
 % by low pass filter tracks the envelope of the derivative FM signal
+xlim([6.1615,6.1645])
 
 %% Exercise 1: Part G
-% Q: is she looking for any kind of plot in part g?
 
 % Subtract the mean out of the signal
 y_I_meanless = y_I_lowpass_norm - mean(y_I_lowpass_norm);
@@ -102,9 +91,6 @@ sound(y_I_meanless_norm_decimated, decimated_fs);
 pause(10);
 
 %% Exercise 2: Part B
-% Q: is she looking for any kind of plot in exercise 2?
-% Q: should we also normalize by max(abs(the signal)) to capture the
-% negative max, or just stick to positive since it worked?
 
 % Take the derivative of y_Q
 y_Q_deriv = diff(y_Q);
