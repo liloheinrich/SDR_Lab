@@ -88,7 +88,9 @@ y_I_meanless_norm_decimated = decimate(y_I_meanless_norm, 4);
 decimate_factor = 4;
 decimated_fs = fs/decimate_factor;
 sound(y_I_meanless_norm_decimated, decimated_fs);
-pause(10);
+
+% Save the envelope detector demodulated signal 
+audiowrite('Envelope_Detector_Demodulated_Signal.wav',y_I_meanless_norm_decimated,decimated_fs)
 
 %% Exercise 2: Part B
 
@@ -115,3 +117,6 @@ m_hat_decimated = decimate(m_hat_norm_safe_norm, decimate_factor);
 
 % Play the final signal
 sound(m_hat_decimated, decimated_fs)
+
+% Save the final I and Q demodulated signal 
+audiowrite('Final_IQ_Demodulated_Signal.wav',m_hat_decimated,decimated_fs)
