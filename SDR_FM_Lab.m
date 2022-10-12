@@ -21,7 +21,14 @@ ylabel("Amplitude")
 %% Exercise 1: Part D
 
 % Plot y_I zoomed in to see an area of frequency modulation
-figure(2); clf;
+figure(); hold on; clf;
+plot(t, y_I)
+xlim([0, t(length(t))])
+xlabel("Time (seconds)")
+ylabel("Amplitude")
+
+% Plot y_I zoomed in to see an area of frequency modulation
+figure(); clf;
 plot(t, y_I)
 % xlim([5.2043, 5.2063])
 xlim([5.2047, 5.2063])
@@ -60,11 +67,13 @@ plot(t(2:length(t)), y_I_lowpass_norm)
 plot(t(2:length(t)), y_I_deriv_nonneg_norm)
 xlabel("Time (seconds)")
 ylabel("Amplitude")
+legend(["LPF signal", "Derivative signal"])
 % xlim([0,t(length(t))])
 
 % Zoom in to a portion of the signal which illustrates how the diode followed 
 % by low pass filter tracks the envelope of the derivative FM signal
 xlim([6.1615,6.1645])
+ylim([0,1])
 
 %% Exercise 1: Part G
 
@@ -107,6 +116,13 @@ m_hat_norm_safe_norm = m_hat_norm_safe ./ (max(m_hat_norm_safe) / .1);
 
 % Plot the signal
 figure(); clf; hold on;
+plot(t(2:length(t)), m_hat);
+xlim([0,t(length(t))])
+xlabel("Time (seconds)")
+ylabel("Amplitude")
+
+% Plot the signal
+figure(); clf; hold on;
 plot(t(2:length(t)), m_hat_norm_safe_norm);
 xlabel("Time (seconds)")
 ylabel("Amplitude")
@@ -120,3 +136,6 @@ sound(m_hat_decimated, decimated_fs)
 
 % Save the final I and Q demodulated signal 
 audiowrite('Final_IQ_Demodulated_Signal.wav',m_hat_decimated,decimated_fs)
+
+figure(); hold on; clf;
+plot(fftshift(abs(fft(m_hat_decimated))))
